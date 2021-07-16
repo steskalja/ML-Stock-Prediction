@@ -11,3 +11,7 @@ def cg():
         predictJSON = gg.create_predict(int(ntp))
         return render_template('index.html',graphJSON=graphJSON,predictJSON=predictJSON )
     return render_template('index.html',graphJSON=graphJSON)
+
+@app.route("/about")
+def about():
+    return render_template('about.html')

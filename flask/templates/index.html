@@ -123,8 +123,20 @@
             
        </p>
     </div>
+	<div class="col-sm-6 col-md-3">
+        <p>
+            <h5>Current Range</h5>
+            
+       </p>
+    </div>
     <div id="plot" data-aos="flip-left" data-aos-duration="1500"></div>
 	<div id="chart" class="chart"></div>
+		<div class="col-sm-6 col-md-3">
+        <p>
+            <h5>Future Prediction</h5>
+            
+       </p>
+    </div>
 	<div id="prediction" class="chart"></div>
     <script src="/static/js/plots.js"></script>
 
@@ -141,15 +153,24 @@
 	<script type="text/javascript">
          
         var graphs = {{graphJSON | safe}};
-		
+		var layout ={
+					title : "GE Stocks from 7/13/2020 to 7/13/2021",
+					xaxis :{title : "Date"},
+					yaxis :{title : "Close"}
+				}
         
-        Plotly.newPlot('chart',graphs,{}); 
+        Plotly.newPlot('chart',graphs,layout); 
 		
  
     </script>
 	<script type="text/javascript">
 		var pgraph = {{predictJSON | safe}};
-		Plotly.newPlot('prediction',pgraph,{}); 
+		var layout = {
+					title : "GE Stocks in the Future",
+					xaxis : {title : "Date"},
+					yaxis : {title : "Close"}
+				}
+		Plotly.newPlot('prediction',pgraph,layout); 
 	</script>
 	
 </html>
