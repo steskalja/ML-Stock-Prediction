@@ -106,7 +106,7 @@
 
         <p>Please enter the number of days you would like to predict (A number between 1 and 30):</p> <!--must default to 10-->
 
-        <form name="myForm" action="/action_page.php" onsubmit="return validateForm()" method="post"><!--action must be updated-->
+        <form name="myForm" action="{{ url_for("cg")}}" onsubmit="return validateForm()" method="post"><!--action must be updated-->
           <input type="number" name="num"> <br>
           <input type="submit" value="Submit">
         </form>
@@ -125,6 +125,7 @@
     </div>
     <div id="plot" data-aos="flip-left" data-aos-duration="1500"></div>
 	<div id="chart" class="chart"></div>
+	<div id="prediction" class="chart"></div>
     <script src="/static/js/plots.js"></script>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
@@ -140,8 +141,15 @@
 	<script type="text/javascript">
          
         var graphs = {{graphJSON | safe}};
+		
         
-        Plotly.newPlot('chart',graphs,{});        
+        Plotly.newPlot('chart',graphs,{}); 
+		
  
     </script>
+	<script type="text/javascript">
+		var pgraph = {{predictJSON | safe}};
+		Plotly.newPlot('prediction',pgraph,{}); 
+	</script>
+	
 </html>
