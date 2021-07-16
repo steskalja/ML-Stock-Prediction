@@ -7,10 +7,12 @@ import json
 import matplotlib.pyplot as plt
 import plotly
 import plotly.graph_objects as go
+from datetime import date
 
 def get_graph():
+    today = date.today()
     trained_model = model.get_model()
-    tf = yf.download('GE',start='2020-07-13', interval='1d',  end='2021-07-13',progress=False)
+    tf = yf.download('GE',start='2020-07-13', interval='1d',  end=today,progress=False)
     tf.drop(columns=['Open', 'High', 'Low', 'Volume'], inplace=True)
     tf["Date"] = tf.index
     test_data = tf['Close'].values
